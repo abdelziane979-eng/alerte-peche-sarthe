@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alerte Peche Sarthe</title>
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0369a1">
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+         margin: 0; padding: 16px; background: #f0f4f8; color: #222;
+         display: flex; flex-direction: column; align-items: center; }
+  header, h2, .meteo, .stations, .date { width: 100%; max-width: 700px; }
+  .riviere { width: 100%; max-width: 700px; }
+  header { background: linear-gradient(135deg, #0369a1, #075985);
+            color: white; padding: 20px; border-radius: 12px;
+            margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  h1 { margin: 0; font-size: 1.4em; }
+  .compteur { margin-top: 8px; font-size: 1em; opacity: 0.95; }
+  h2 { font-size: 1.1em; color: #075985; margin: 20px 0 10px 0;
+        border-bottom: 2px solid #075985; padding-bottom: 4px; }
+  .meteo { background: white; padding: 16px; border-radius: 10px;
+            margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .meteo h2 { margin-top: 0; }
+  .meteo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .meteo-item { display: flex; flex-direction: column; padding: 6px;
+                 background: #f0f4f8; border-radius: 6px; }
+  .meteo-item .label { font-size: 0.8em; color: #666; }
+  .meteo-item .valeur { font-size: 1.1em; font-weight: bold; color: #075985; }
+  .pluie { padding: 10px; border-radius: 6px; background: #f8f8f8;
+            font-size: 0.95em; }
+  .riviere { color: #c00; border-bottom-color: #c00; }
+  .stations { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  @media (min-width: 600px) {
+    .stations { grid-template-columns: 1fr 1fr; }
+  }
+  .station { background: white; padding: 14px; border-radius: 10px;
+              box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+              border-left: 4px solid #ccc; }
+  .tend-montee { border-left-color: #c00; }
+  .tend-baisse { border-left-color: #090; }
+  .tend-stable { border-left-color: #888; }
+  .station-nom { font-weight: bold; font-size: 0.95em; }
+  .station-hauteur { font-size: 1.6em; font-weight: bold; color: #075985;
+                      margin: 4px 0; }
+  .station-tend { font-size: 0.9em; font-weight: bold; color: #666; }
+  .tend-montee .station-tend { color: #c00; }
+  .tend-baisse .station-tend { color: #090; }
+  .var { font-size: 0.9em; color: #444; margin-top: 4px; }
+  .station-maj { font-size: 0.75em; color: #888; margin-top: 6px; }
+  .date { text-align: center; color: #888; font-size: 0.85em; margin: 20px 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Alerte Peche - Sarthe</h1>
+  <div class="compteur">10 stations surveillees</div>
+</header>
+
+        <div class="meteo">
+            <h2>Meteo au Mans</h2>
+            <div class="meteo-grid">
+                <div class="meteo-item"><span class="label">Temperature</span><span class="valeur">16.2 C</span></div>
+                <div class="meteo-item"><span class="label">Pression</span><span class="valeur">1016 hPa</span></div>
+                <div class="meteo-item"><span class="label">Vent</span><span class="valeur">15.8 km/h</span></div>
+                <div class="meteo-item"><span class="label">Nuages</span><span class="valeur">50 %</span></div>
+            </div>
+            <div class="pluie" style="color: #090;">
+                <strong>Pluie 24h : 0.0 mm</strong> - Pas de pluie significative prevue
+            </div>
+        </div>
+<h2 class="riviere">La Sarthe</h2><div class="stations">
+            <div class="station tend-montee">
+                <div class="station-nom">Sarthe a Beaumont</div>
+                <div class="station-hauteur">-49 mm</div>
+                <div class="station-tend">↑ EN MONTE</div>
+                
+                <div class="station-maj">Mesure : 2026-10-08 13:10</div>
+            </div>
+            <div class="station tend-montee">
+                <div class="station-nom">Sarthe a La Suze</div>
+                <div class="station-hauteur">216 mm</div>
+                <div class="station-tend">↑ EN MONTE</div>
+                
+                <div class="station-maj">Mesure : 2026-10-08 13:00</div>
+            </div>
+            <div class="station tend-stable">
+                <div class="station-nom">Sarthe a Neuville</div>
+                <div class="station-hauteur">354 mm</div>
+                <div class="station-tend">= STABLE</div>
+                
+                <div class="station-maj">Mesure : 2026-10-08 13:20</div>
+            </div>
+            <div class="station tend-stable">
+                <div class="station-nom">Sarthe a Sable</div>
+                <div class="station-hauteur">61 mm</div>
+                <div class="station-tend">= STABLE</div>
+                
+                <div class="station-maj">Mesure : 2026-10-08 13:00</div>
+            </div>
+            <div class="station tend-baisse">
+                <div class="station-nom">Sarthe a Spay</div>
+                <div class="station-hauteur">95 mm</div>
+                <div class="station-tend">↓ EN BAISSE</div>
+                
+                <div class="station-maj">Mesure : 2026-10-08 13:20</div>
+            </div>
+            <div class="station tend-montee">
+                <div class="station-nom">Sarthe au Mans [Yssoir]</div>
+                <div class="station-hauteur">228 mm</div>
+                <div class="station-tend">↑ EN MONTE</div>
+                
+                <div class="station-maj">Mesure : 2026-10-08 13:20</div>
+            </div></div><h2 class="riviere">L'Huisne</h2><div class="stations">
+            <div class="station tend-baisse">
+                <div class="station-nom">Huisne a La Ferte-Bernard</div>
+                <div class="station-hauteur">-152 mm</div>
+                <div class="station-tend">↓ EN BAISSE</div>
+                
+                <div class="station-maj">Mesure : 2026-10-08 13:20</div>
+            </div>
+            <div class="station tend-montee">
+                <div class="station-nom">Huisne a Montfort-le-Gesnois</div>
+                <div class="station-hauteur">658 mm</div>
+                <div class="station-tend">↑ EN MONTE</div>
+                
+                <div class="station-maj">Mesure : 2026-10-08 13:20</div>
+            </div>
+            <div class="station tend-stable">
+                <div class="station-nom">Huisne au Mans [Pontlieue]</div>
+                <div class="station-hauteur">-289 mm</div>
+                <div class="station-tend">= STABLE</div>
+                
+                <div class="station-maj">Mesure : 2026-10-08 13:10</div>
+            </div></div><h2 class="riviere">La Vègre</h2><div class="stations">
+            <div class="station tend-montee">
+                <div class="station-nom">Vegre a Asnieres</div>
+                <div class="station-hauteur">356 mm</div>
+                <div class="station-tend">↑ EN MONTE</div>
+                
+                <div class="station-maj">Mesure : 2026-10-08 13:20</div>
+            </div></div>
+<div class="date">Derniere mise a jour : 08/10/2026 a 15h36</div>
+</body>
+</html>
