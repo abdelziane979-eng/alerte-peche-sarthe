@@ -1,0 +1,41 @@
+name: Alerte Peche Sarthe
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  run-alerte:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests Pillow
+
+      - name: Run script
+        env:
+          NTFY_TOPIC_SARTHE: ${{ secrets.NTFY_TOPIC_SARTHE }}
+          NTFY_TOPIC_HUISNE: ${{ secrets.NTFY_TOPIC_HUISNE }}
+          NTFY_TOPIC_VEGRE: ${{ secrets.NTFY_TOPIC_VEGRE }}
+        run: python alerte_peche_sarthe.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "ci@github.com"
+          git config --global user.name "Alerte Bot"
+          git add historique_hauteurs.json alertes_peche.json index.html icon-192.png icon-512.png manifest.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "MAJ auto"
+            git push
+          fi
